@@ -2,9 +2,12 @@ package service.impl;
 
 import java.util.Date;
 
+import service.Bibliotheque;
 import dao.AdherentDao;
 import dao.EmpruntDao;
 import dao.LivreDao;
+import dao.jdbc.LivreDaoJdbc;
+import dao.jpa.LivreDaoJpa;
 import dao.memory.AdherentDaoMemory;
 import dao.memory.EmpruntDaoMemory;
 import dao.memory.LivreDaoMemory;
@@ -12,13 +15,12 @@ import entity.Adherent;
 import entity.BusinessException;
 import entity.Emprunt;
 import entity.Livre;
-import service.Bibliotheque;
 
 public class BibliothequeImpl implements Bibliotheque {
 	final int maxLivreIdentique;
 	final int maxEmpruntAdherent;
 	
-	LivreDao livreDao = new LivreDaoMemory();
+	LivreDao livreDao = new LivreDaoJpa();
 	AdherentDao adherentDao = new AdherentDaoMemory();
 	EmpruntDao empruntDao = new EmpruntDaoMemory();
 	
