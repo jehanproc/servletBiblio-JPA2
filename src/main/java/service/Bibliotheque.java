@@ -1,5 +1,10 @@
 package service;
 
+import java.util.List;
+
+import dao.AdherentDao;
+import dao.EmpruntDao;
+import dao.LivreDao;
 import entity.Adherent;
 import entity.Livre;
 
@@ -17,5 +22,10 @@ public interface Bibliotheque {
 	public void emprunterLivre(int idLivre, int idAdherent);
 	public void transfererEmprunt(int idAdherentPrecedent, int idLivre, int idAdherentSuivant);
 	public void restituerLivre(int idLivre, int idAdherent);
+	
+	public List<Livre> listerLivre();
+	public LivreDao getLivreDao();
+	public AdherentDao getAdherentDao();
+	public EmpruntDao getEmpruntDao();
 
 }

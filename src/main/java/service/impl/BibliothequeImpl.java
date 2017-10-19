@@ -1,13 +1,12 @@
 package service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import service.Bibliotheque;
 import dao.AdherentDao;
 import dao.EmpruntDao;
 import dao.LivreDao;
-import dao.jdbc.LivreDaoJdbc;
-import dao.jpa.LivreDaoJpa;
 import dao.memory.AdherentDaoMemory;
 import dao.memory.EmpruntDaoMemory;
 import dao.memory.LivreDaoMemory;
@@ -20,7 +19,7 @@ public class BibliothequeImpl implements Bibliotheque {
 	final int maxLivreIdentique;
 	final int maxEmpruntAdherent;
 	
-	LivreDao livreDao = new LivreDaoJpa();
+	LivreDao livreDao = new LivreDaoMemory();
 	AdherentDao adherentDao = new AdherentDaoMemory();
 	EmpruntDao empruntDao = new EmpruntDaoMemory();
 	
@@ -108,5 +107,31 @@ public class BibliothequeImpl implements Bibliotheque {
 		restituerLivre(idLivre, idAdherentPrecedent);
 		emprunterLivre(idLivre, idAdherentSuivant);	
 	}
+
+	@Override
+	public List<Livre> listerLivre() {
+		// TODO Auto-generated method stub
+		return livreDao.findAll();
+	}
+
+	@Override
+	public LivreDao getLivreDao() {
+		
+		// TODO Auto-generated method stub
+		return livreDao;
+	}
+
+	@Override
+	public AdherentDao getAdherentDao() {
+		// TODO Auto-generated method stub
+		return adherentDao;
+	}
+
+	@Override
+	public EmpruntDao getEmpruntDao() {
+		// TODO Auto-generated method stub
+		return empruntDao;
+	}
+	
 
 }
