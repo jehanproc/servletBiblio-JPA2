@@ -16,10 +16,13 @@ import service.impl.BibliothequeImpl;
 /**
  * Servlet implementation class LivreServlet
  */
-@WebServlet({ "/adherent/lister", "/adherent/editer", "/adherent/action" })
+@WebServlet(name="adherentServlet", urlPatterns={ "/adherent/lister", "/adherent/editer", "/adherent/action" })
 public class AdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Bibliotheque biblio = new BibliothequeImpl(3, 5);
+	Bibliotheque biblio;
+	//Bibliotheque biblio = (Bibliotheque)getServletContext().getAttribute("biblio");
+	//Bibliotheque biblio = new BibliothequeImpl(3, 5);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -82,6 +85,11 @@ public class AdherentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		biblio = (Bibliotheque)getServletContext().getAttribute("biblio");
 	}
 
 }

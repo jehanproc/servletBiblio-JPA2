@@ -38,6 +38,10 @@ public class AuthentificationServlet extends HttpServlet {
 		switch (req.getServletPath()) {
 		case "/authentification/login":
 			newUrl = "/WEB-INF/jsp/login.jsp";break;
+			
+		case "/authentification/logout":
+			req.getSession().invalidate();
+			newUrl = "/WEB-INF/jsp/login.jsp";break;
 
 		case "/authentification/validation":
 			String login = req.getParameter("login");
